@@ -23,4 +23,6 @@ urlpatterns = [
     path('',home_page),
     path('about/',about_page),
     path('contact/',contact_page),
+    path('login/',login_page),
+    path('example/',render_anyting)
 ]
