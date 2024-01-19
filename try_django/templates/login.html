@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block title %} 
+{{title}}
+{% endblock %}
+
+{% block content %} 
+<p>This is my first login page. Wait for complete login page</p>
+<!-- these all inside {% % } are called as template tags.-->
+{{ user }}
+
+{{ request.user }}
+
+{{request.path}}
+
+{{request.user.is_authenticated}}
+
+{% if user.is_autheticated %}
+    {% for i in my_list %}
+        <li> {{i}} </li>
+        {% endfor %}
+
+        {% endif %}
+    
+
+{% endblock %}
+
