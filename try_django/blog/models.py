@@ -5,3 +5,4 @@ class BlogPost(models.Model):
     title = models.TextField()
     content = models.TextField(null=True, blank=True)
     date = models.DateTimeField()
+    slug = models.SlugField(default = "hello-world")

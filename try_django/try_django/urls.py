@@ -26,5 +26,6 @@ urlpatterns = [
     path('contact/',contact_page),
     path('login/',login_page),
     path('example/',render_anyting),
-    path('blogs',blog_post_page)
+    path('blogs/',blog_post_page),
+    path('blogs/<str:slug>',blog_post_page),
 ]
