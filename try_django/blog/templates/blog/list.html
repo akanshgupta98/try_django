@@ -1,0 +1,21 @@
+{% extends "blog_post.html" %}
+
+{% block article%}
+This is list page
+<section>
+    {% for post in objects %}
+        <article>
+            <a href="retrieve/{{ post.slug}}">
+            <h4>{{ post.title }}</h4>
+        </a>
+            <!-- <p>{{ post.content |linebreaks }}</p> -->
+            <!-- <p class="date">{{ post.date_published }}</p> -->
+        </article>
+    {% endfor %}
+</section>
+
+<!-- {% for object in objects%}
+    <a href="blogs/{{object.slug}}"><li> {{object.title}}</li></a>
+{% endfor %} -->
+
+{% endblock%}

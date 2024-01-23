@@ -1,0 +1,16 @@
+{% extends "blog_post.html" %}
+
+{% block content%}
+This is retrieve page
+{% endblock%}
+{% block article %}
+<section>
+    {% for post in objects %}
+        <article>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content |linebreaks }}</p>
+            <p class="date">{{ post.date_published }}</p>
+        </article>
+    {% endfor %}
+</section>
+{% endblock%}

@@ -59,16 +59,8 @@
     <header>
         <h1>A Kaleidoscope of Ideas: Your Daily Dose of Diversity</h1>
     </header>
-
-    <section>
-        {% for post in posts %}
-            <article>
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.content |linebreaks }}</p>
-                <p class="date">{{ post.date_published }}</p>
-            </article>
-        {% endfor %}
-    </section>
+    {% block article %}
+    {%endblock%}
 
     <footer>
         &copy; 2024 A Kaleidoscope of Ideas: Your Daily Dose of Diversity. All rights reserved.
