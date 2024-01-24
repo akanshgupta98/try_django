@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,redirect
 from .models import BlogPost
 from django.http import Http404
 from blog.form import BlogPostForm, BlogPostModelForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 
@@ -27,7 +29,8 @@ from blog.form import BlogPostForm, BlogPostModelForm
 # GET -> RETRIEVE/LIST
 # POST -> CREATE, UPDATE, DELETE
 
-
+# @login_required(login_url='/login')
+@staff_member_required
 def blog_post_create_view(request):
     # form = BlogPostForm(request.POST or None)
     # if form.is_valid():
@@ -56,8 +59,28 @@ def blog_post_retrieve_view(request,post_slug):
     context = {"objects":qs}
     return render(request,"blog/retrieve.html",context)
 
-def blog_post_update_view(request):
-    return render(request,"blog/update.html")
+@staff_member_required
+def blog_post_update_view(request,post_slug):
+    obj = get_object_or_404(BlogPost,slug=post_slug)
+    # qs = BlogPost.objects.filter(slug=post_slug)
+    form = BlogPostModelForm(request.POST or None,instance=obj)
+    if form.is_valid():
+        form.save()
+        form = BlogPostModelForm()
+        print("Data is updated")
+    
+    context = {"objects":obj,"forms":form}
+    return render(request,"blog/update.html",context)
 
-def blog_post_delete_view(request):
-    return render(request,"blog/delete.html")
+@staff_member_required
+def blog_post_delete_view(request,post_slug):
+
+    obj = get_object_or_404(BlogPost,slug = post_slug)
+
+    if request.method == "POST":
+        obj.delete()
+        return redirect("/blogs")
+    
+    context = {"object":obj}
+
+    return render(request,"blog/delete.html",context)

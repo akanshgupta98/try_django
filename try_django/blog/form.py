@@ -13,3 +13,7 @@ class BlogPostModelForm(forms.ModelForm):
     class Meta:
         model = BlogPost
         fields = ['title','content','slug']
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.PasswordInput()

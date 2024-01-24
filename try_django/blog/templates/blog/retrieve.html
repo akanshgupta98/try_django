@@ -10,6 +10,19 @@ This is retrieve page
             <h2>{{ post.title }}</h2>
             <p>{{ post.content |linebreaks }}</p>
             <p class="date">{{ post.date_published }}</p>
+
+            {%if request.user.is_authenticated %}
+                <form action="{{ post.get_edit_url}}" method="get">
+                    <button type="submit">Edit</button>
+                </form>
+                
+                <form action="{{ post.get_delete_url}}" method="get">
+                    <button type="submit">Delete</button>
+                </form>
+            {%endif%}
+            
+            
+            <!-- <button onclick="">Edit</button> -->
         </article>
     {% endfor %}
 </section>

@@ -5,11 +5,21 @@ This is list page
 <section>
     {% for post in objects %}
         <article>
-            <a href="retrieve/{{ post.slug}}">
-            <h4>{{ post.title }}</h4>
-        </a>
-            <!-- <p>{{ post.content |linebreaks }}</p> -->
-            <!-- <p class="date">{{ post.date_published }}</p> -->
+            <h4>
+                <span>
+                    <a href="{{ post.get_retrieve_url}}" > {{ post.title }}</a>   
+                </span>
+            </h4>
+            
+            <!-- <h8>
+                <span>   
+                    <a href="{{ post.get_edit_url}}">Edit</a>
+                </span>
+                
+                <span>
+                    <a href="{{ post.get_delete_url}}">Delete</a>
+                </span>
+            </h8> -->
         </article>
     {% endfor %}
 </section>

@@ -5,6 +5,6 @@ urlpatterns = [
     path('',blog_post_list_view),
     path('retrieve/<str:post_slug>',blog_post_retrieve_view),
     path('create',blog_post_create_view),
-    path('update',blog_post_update_view),
-    path('delete',blog_post_delete_view),
+    path('<str:post_slug>/edit',blog_post_update_view),
+    path('<str:post_slug>/delete',blog_post_delete_view),
 ]

@@ -1,5 +1,18 @@
-{% extends "base.html" %}
+{% extends "blog_post.html" %}
 
-{% block content%}
+{% block article%}
+
 <h1>This is update page</h1>
 {% endblock%}
+
+{%block update_form%}
+
+<section>
+    <form method="POST" action="./edit"> {% csrf_token %}
+        {{forms.as_p}}
+    <button type="submit">Update</button>
+    </form>
+    
+
+</section>
+{%endblock%}

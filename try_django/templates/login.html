@@ -1,28 +1,40 @@
-{% extends "base.html" %}
+{% extends "blog_post.html" %}
 
+{%block article %}
+<section class = "login-section">
+    <div class="login-container">
+        <h2>Login</h2>
+        <form class="login-form" id="loginForm" method="POST" action="."> {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
 
-{% block title %} 
-{{title}}
-{% endblock %}
+    <!-- Add Bootstrap JS and Popper.js (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-{% block content %} 
-<p>This is my first login page. Wait for complete login page</p>
-<!-- these all inside {% % } are called as template tags.-->
-{{ user }}
+    <script>
+        // Basic client-side validation using JavaScript
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
 
-{{ request.user }}
-
-{{request.path}}
-
-{{request.user.is_authenticated}}
-
-{% if user.is_autheticated %}
-    {% for i in my_list %}
-        <li> {{i}} </li>
-        {% endfor %}
-
-        {% endif %}
-    
-
-{% endblock %}
-
+            if (username.trim() === '' || password.trim() === '') {
+                alert('Please enter both username and password.');
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    </script>
+</section>
+{%endblock%}

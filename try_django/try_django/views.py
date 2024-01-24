@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.loader import get_template
+from django.contrib.auth import authenticate
+from blog.form import LoginForm
 
 
 #TEMPLATES CONCEPT
@@ -9,10 +11,22 @@ def home_page(request):
     return render(request,"home.html",{"title":page_title})
 
 def login_page(request):
-    if request.user.is_authenticated:
-        return render(request,"login.html",{"title":"User Login Page","my_list":[1,2,3,4,5]})
-    else:
-        return render(request,"login.html",{"title":"User Login Page"})
+    
+    login_form = LoginForm(request.POST or None)
+    if login_form.is_valid():
+        username = login_form.cleaned_data.get('username')
+        password = login_form.cleaned_data.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            # A backend authenticated the credentials
+            print("USER IS AUTHENTICATED")
+            ...
+        else:
+            print("USER IS NOT AUTHENTICATED")
+            # No backend authenticated the credentials
+            ...
+    
+    return render(request,"login.html",{"title":"User Login Page"})
     
 
 #OKAY FOR A VERY SMALL EXAMPLE. 

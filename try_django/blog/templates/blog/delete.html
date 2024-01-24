@@ -1,5 +1,17 @@
-{% extends "base.html" %}
+{% extends "blog_post.html" %}
 
 {% block content%}
 This is delete page
 {% endblock%}
+
+{% block update_form %}
+<section>
+    
+<h1 >Are you sure you want to delete content with following title? </h1>
+<p>{{object.title}}</p>
+<form method="POST"> {% csrf_token %}
+    <button class="btn btn-danger">Delete</button>
+</form>
+</section>
+
+{%endblock%}
