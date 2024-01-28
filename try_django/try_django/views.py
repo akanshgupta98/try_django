@@ -7,8 +7,8 @@ from blog.form import LoginForm
 
 #TEMPLATES CONCEPT
 def home_page(request):
-    page_title = 'Welcome to homepage'
-    return render(request,"home.html",{"title":page_title})
+    # page_title = 'Welcome to homepage'
+    return render(request,"byte_blaze.html")
 
 def login_page(request):
     

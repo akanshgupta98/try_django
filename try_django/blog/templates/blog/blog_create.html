@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ByteBlaze - Add Blog Post</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 56px;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .add-blog-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+{% include "navbar.html"%}
+<!-- Add Blog Post Form -->
+<div class="container">
+    <div class="add-blog-form">
+        <h2>Add New Blog Post</h2>
+        <!-- Your blog post form goes here -->
+        <form method="POST" action="./create"> {% csrf_token %}
+            <div class="form-group">
+                <!-- {{form.as_p}} -->
+                <label for="blogTitle">Title</label>
+                <input type="text" class="form-control" id="blogTitle" placeholder="Enter the title">
+            </div>
+            <div class="form-group">
+                <label for="blogContent">Content</label>
+                <textarea class="form-control" id="blogContent" rows="5" placeholder="Enter the content"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="blogContent">Slug</label>
+                <textarea class="form-control" id="blogContent" rows="5" placeholder="Enter the slug"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

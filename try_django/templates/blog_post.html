@@ -3,13 +3,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {%include "base.html"%}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Blogs</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            margin: 0;
+            /* margin: 0; */
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
@@ -130,13 +131,17 @@
         }
     </style>
 </head>
+{% include "navbar.html" %}   
 <body>
 
-    <header>
+     
+
+    <!-- <header>
         <a href="/blogs" style="text-decoration: none; color: inherit;">
-            <h1>A Kaleidoscope of Ideas: Your Daily Dose of Diversity</h1>
+            <h1>ByteBlaze: Your Gateway to Finance and Tech Discoveries.</h1>
         </a>
-    </header>
+    </header> -->
+    
     {% block article %}
     {%endblock%}
 

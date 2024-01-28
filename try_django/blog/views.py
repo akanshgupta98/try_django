@@ -33,16 +33,25 @@ from django.contrib.admin.views.decorators import staff_member_required
 @staff_member_required
 def blog_post_create_view(request):
     # form = BlogPostForm(request.POST or None)
+    # print(form.is_valid())
+    # print(request.user)
     # if form.is_valid():
     #     print(form.cleaned_data)
+    #     form.user = request.user
     #     BlogPost.objects.create(**form.cleaned_data)
     #     form = BlogPostForm()
 
     form = BlogPostModelForm(request.POST or None)
+    print(form.fields)
+    # if form is not None:
+        # print(form.cleaned_data)
 
     if form.is_valid():
         print(form.cleaned_data)
+        form.save(commit=False)
+        form.user = request.user
         form.save()
+
         form = BlogPostModelForm()
 
     context = {"form":form}
@@ -52,12 +61,15 @@ def blog_post_list_view(request):
     qs = BlogPost.objects.all()
     context = {"objects":qs}
 
-    return render(request,"blog/list.html",context)
+    print(str(qs[0].content)[:50])
+
+    # return render(request,"blog/list.html",context)
+    return render(request,"blog_list.html",context)
 
 def blog_post_retrieve_view(request,post_slug):
     qs = BlogPost.objects.filter(slug=post_slug)
     context = {"objects":qs}
-    return render(request,"blog/retrieve.html",context)
+    return render(request,"blog/blog_retrieve.html",context)
 
 @staff_member_required
 def blog_post_update_view(request,post_slug):
