@@ -1,17 +1,50 @@
-{% extends "blog_post.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ByteBlaze - Delete Blog Post</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 56px;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .delete-blog-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .confirmation-message {
+            margin-top: 20px;
+        }
+        .confirm-btn,
+        .cancel-btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
 
-{% block content%}
-This is delete page
-{% endblock%}
+<!-- Navigation Bar -->
+{% include "navbar.html"%}
+<!-- Delete Blog Post Section -->
+<div class="container delete-blog-container">
+    <form method="POST" action="{{object.get_delete_url}}"> {% csrf_token %}
+        <h2>Delete Blog Post</h2>
+        <p class="confirmation-message">Are you sure you want to delete the blog post titled "Blog Title"?</p>
+        <div class="options-container">
+            <button type="submit" class="btn btn-danger confirm-btn">Confirm Delete</button>
+            <a href="{{object.get_list_blogs_url}}"class="btn btn-secondary cancel-btn">Cancel</a>
+        </div>
+    </form>
+</div>
 
-{% block update_form %}
-<section>
-    
-<h1 >Are you sure you want to delete content with following title? </h1>
-<p>{{object.title}}</p>
-<form method="POST"> {% csrf_token %}
-    <button class="btn btn-danger">Delete</button>
-</form>
-</section>
-
-{%endblock%}
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

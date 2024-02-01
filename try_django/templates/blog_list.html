@@ -56,7 +56,11 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ post.title }}</h5>
                     <p class="card-text">{{ post.content|slice:":200"  }}...</p>
+                    {% if not post.publish_date%}
+                    <span class="badge badge-info draft-badge">Draft</span>
+                    {%endif%}
                     <a href="{{post.get_retrieve_url}}" class="btn btn-primary">Read More</a>
+                    
                 </div>
             </div>
         </div>

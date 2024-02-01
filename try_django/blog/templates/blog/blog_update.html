@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ByteBlaze - Add Blog Post</title>
+    <title>ByteBlaze - Edit Blog Post</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -13,7 +13,7 @@
         .navbar {
             margin-bottom: 20px;
         }
-        .add-blog-form {
+        .edit-blog-form {
             max-width: 600px;
             margin: 0 auto;
         }
@@ -23,28 +23,25 @@
 
 <!-- Navigation Bar -->
 {% include "navbar.html"%}
-<!-- Add Blog Post Form -->
+
+<!-- Edit Blog Post Form -->
 <div class="container">
-    <div class="add-blog-form">
-        <h2>Add New Blog Post</h2>
-        <!-- Your blog post form goes here -->
-        <form method="POST" action="./create"> {% csrf_token %}
+    <div class="edit-blog-form">
+        <h2>Edit Blog Post</h2>
+        <!-- Your blog post edit form goes here -->
+        <form action="{{objects.get_edit_url}}" method="POST"> {% csrf_token %}
             <div class="form-group">
-                <!-- {{form.as_p}} -->
                 <label for="blogTitle">Title</label>
-                <input type="text" class="form-control" id="blogTitle" placeholder="Enter the title" name="title">
-                
+                <input type="text" class="form-control" id="blogTitle" name="title" value="{{objects.title}}">
             </div>
             <div class="form-group">
                 <label for="blogContent">Content</label>
-                <textarea class="form-control" id="blogContent" rows="5" placeholder="Enter the content" name="content"></textarea>
+                <textarea class="form-control" id="blogContent" name="content" rows="5">{{objects.content}}</textarea>
             </div>
-            
             <div class="form-group">
-                <label for="blogContent">Slug</label>
-                <textarea class="form-control" id="blogContent" rows="5" placeholder="Enter the slug" name="slug"></textarea>
+                <label for="slug">Slug</label>
+                <input type="text" class="form-control" id="blogSlug" name="slug" value="{{objects.slug}}">
             </div>
-            
             <button type="submit" class="btn btn-primary" name="action" value="draft">Save as Draft</button>
             <button type="submit" class="btn btn-primary" name="action" value="publish">Publish</button>
         </form>

@@ -10,10 +10,12 @@ class BlogPostForm(forms.Form):
     user = forms.CharField(required=False)
 
 class BlogPostModelForm(forms.ModelForm):
-    date = forms.DateField(required=False)
+    # date = forms.DateField(required=False)
+    user = forms.CharField(required=False)
+    action = forms.CharField(required=False)
     class Meta:
         model = BlogPost
-        fields = ['title','content','slug','user']
+        fields = ['title','content','slug','publish_date']
 
 class LoginForm(forms.Form):
     username = forms.CharField()
